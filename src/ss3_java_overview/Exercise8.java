@@ -1,5 +1,8 @@
 package ss3_java_overview;
 
+/**
+ * Hiển thị kết quả của các dòng lệnh
+ */
 public class Exercise8 {
     public static void main(String[] args) {
         int i = 3;

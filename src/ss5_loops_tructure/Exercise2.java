@@ -1,0 +1,21 @@
+package ss5_loops_tructure;
+
+import java.util.Scanner;
+
+/**
+ * In dãy số lẻ từ 1 đến n
+ */
+public class Exercise2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Nhập n: ");
+        int n = scanner.nextInt();
+
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 != 0) {
+                System.out.print(i + "\t ");
+            }
+        }
+    }
+}
