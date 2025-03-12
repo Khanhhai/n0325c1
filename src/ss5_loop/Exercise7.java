@@ -1,4 +1,4 @@
-package ss5_loops_tructure;
+package ss5_loop;
 
 import java.util.Scanner;
 

@@ -1,11 +1,11 @@
-package ss5_loops_tructure;
+package ss5_loop;
 import java.util.Scanner;
 
 /**
  * In dãy số 1,2,3,4...,n
  */
 
-public class Exercise1 {
+public class Exercise1{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
