@@ -8,63 +8,106 @@ import java.util.Scanner;
 public class Main5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int n;
 
-        System.out.println("Nhâp vào số nguyên dương n: ");
-        int n = scanner.nextInt();
+        do {
+            System.out.print("Nhập số nguyên dương n: ");
+            n = scanner.nextInt();
 
-        System.out.printf("Số đảo của %d: %d\n", n, reversedNumber(n));
+            if (n <= 0) {
+                System.out.println("Bạn hãy nhập số nguyên dương (n > 0), vui lòng nhập lại!!!");
+            }
+        } while (n <= 0);
 
-        if (isSymmetricalNumber(n)) {
-            System.out.printf("%d là số đối xứng\n", n);
+        System.out.printf("Số %d sau khi đảo ngược là: %d", n, reversedNumber(n));
+
+        if (isSymetricalNumber (n)) {
+            System.out.printf("Số %d là số đối xứng\n", n);
         } else {
-            System.out.printf("%d không là số đối xứng\n", n);
+            System.out.printf("Số %d không phải là số đối xứng\n", n);
         }
 
         if (isSquareNumber(n)) {
-            System.out.printf("%d là số chính phương\n", n);
+            System.out.printf("Số %d là số chính phương\n", n);
         } else {
-            System.out.printf("%d không là số chính phương\n", n);
+            System.out.printf("Số %d không phải là số chính phương\n", n);
         }
+
         if (isPrimeNumber(n)) {
-            System.out.printf("%d là số nguyên tố\n", n);
+            System.out.printf("Số %d là số nguyên tố\n", n);
         } else {
-            System.out.printf("%d không là số nguyên tố \n", n);
+            System.out.printf("Số %d không phải là số nguyên tố\n", n);
         }
 
-        System.out.printf("%d Tổng các số lẻ của %d \n", n);
+        System.out.printf("Tổng các số lẻ của số %d = %d\n", n, calculateTotalOddDigits(n));
+        System.out.printf("Tổng các số nguyên tố = %d\n", calculateTotalPrimeDigits(n));
+        System.out.printf("Tổng các số chính phương = %d\n", calculateTotalSquareDigits(n));
     }
 
-    static int reversedNumber(int number) {
-        int reversed = 0;
-
-        while (number != 0) {
-            int digit = number % 10;
-            reversed = reversed * 10 * digit;
-            number /= 10;
+    public static int reversedNumber(int n) {
+        int reverse = 0;
+        while (n > 0) {
+            reverse = reverse * 10 + n % 10;
+            n /= 10;
         }
-        return reversed;
+        return reverse;
     }
 
-    static boolean isSymmetricalNumber(int number) {
-        return number == reversedNumber(number);
+    public static boolean isSymetricalNumber(int n) {
+        return n == reversedNumber(n);
     }
 
-    static boolean isSquareNumber(int number) {
-        return Math.sqrt(number) % 1 == 0;
+    public static boolean isSquareNumber (int n) {
+        return Math.sqrt(n) % 1 == 0;
     }
 
-    static boolean isPrimeNumber(int number) {
-        if (number < 2) {
+    public static boolean isPrimeNumber(int n) {
+
+        if (n < 2) {
             return false;
         }
-        for (int i = 2; i <= Math.sqrt(number); i++) {
-            if (number % 1 == 0) {
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
                 return false;
             }
-            return true;
         }
+        return true;
+    }
+
+    public static int calculateTotalOddDigits(int n) {
+        int total = 0;
+        while (n != 0) {
+            int digit = n % 10;
+            if (digit % 2 != 0) {
+                total += digit;
+            }
+            n /= 10;
+        }
+        return total;
+    }
+
+    public static int calculateTotalPrimeDigits(int n) {
+        int total = 0;
+        while (n != 0) {
+            int digit = n % 10;
+            if (isPrimeNumber(digit)) {
+                total += digit;
+            }
+            n /= 10;
+        }
+        return total;
+    }
+
+    public static int calculateTotalSquareDigits(int n) {
+        int total = 0;
+        while (n != 0) {
+            int digit = n % 10;
+            if (isSquareNumber(digit)) {
+                total += digit;
+            }
+            n /= 10;
+        }
+        return total;
     }
 }
-
-
-
